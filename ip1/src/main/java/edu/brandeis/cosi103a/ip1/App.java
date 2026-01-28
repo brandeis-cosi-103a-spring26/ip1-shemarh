@@ -1,6 +1,6 @@
 package edu.brandeis.cosi103a.ip1;
 
-import java.util.Scanner;
+
 import java.util.Random;
 
 /**
@@ -10,116 +10,190 @@ import java.util.Random;
  */
 public class App 
 {
-    public static final int NUM_TURNS = 10;
-    public static final int MAX_REROLLS = 2;
-    public static final int DIE_SIDES = 6;
-    
-    private static Random random = new Random();
-    private static Scanner scanner = new Scanner(System.in);
-    
-    public static void main(String[] args)
-    {
-        System.out.println("========================================");
-        System.out.println("     Welcome to the Dice Rolling Game!");
-        System.out.println("========================================\n");
-        
-        // Get player names
-        System.out.print("Enter Player 1's name: ");
-        String player1Name = scanner.nextLine().trim();
-        if (player1Name.isEmpty()) {
-            player1Name = "Player 1";
+      private final Player player1;
+    private final Player player2;
+    private final Supply supply;
+    private Player currentPlayer;
+    private Player otherPlayer;
+    private int turnCount;
+    private final boolean verbose;
+
+    public App(boolean verbose) {
+        this.player1 = new Player("Player 1");
+        this.player2 = new Player("Player 2");
+        this.supply = new Supply();
+        this.turnCount = 0;
+        this.verbose = verbose;
+    }
+
+    public App() {
+        this(false);
+    }
+
+    /**
+     * Sets up the game with starting decks for both players.
+     */
+    public void setup() {
+        setupPlayer(player1);
+        setupPlayer(player2);
+
+        // Randomly choose starting player
+        Random rand = new Random();
+        if (rand.nextBoolean()) {
+            currentPlayer = player1;
+            otherPlayer = player2;
+        } else {
+            currentPlayer = player2;
+            otherPlayer = player1;
         }
-        
-        System.out.print("Enter Player 2's name: ");
-        String player2Name = scanner.nextLine().trim();
-        if (player2Name.isEmpty()) {
-            player2Name = "Player 2";
-        }
-        
-        System.out.println("\n----------------------------------------");
-        System.out.println("Game Rules:");
-        System.out.println("- Each player gets " + NUM_TURNS + " turns");
-        System.out.println("- On each turn, roll a " + DIE_SIDES + "-sided die");
-        System.out.println("- You can re-roll up to " + MAX_REROLLS + " times per turn");
-        System.out.println("- The final die value is added to your score");
-        System.out.println("- Highest score wins!");
-        System.out.println("----------------------------------------\n");
-        
-        int player1Score = 0;
-        int player2Score = 0;
-        
-        // Play 10 turns for each player
-        for (int turn = 1; turn <= NUM_TURNS; turn++) {
-            System.out.println("===== TURN " + turn + " =====");
-            
-            // Player 1's turn
-            System.out.println("\n" + player1Name + "'s turn:");
-            int player1TurnScore = playTurn(player1Name);
-            player1Score += player1TurnScore;
-            System.out.println(player1Name + " scores: " + player1TurnScore + " | Total: " + player1Score);
-            
-            // Player 2's turn
-            System.out.println("\n" + player2Name + "'s turn:");
-            int player2TurnScore = playTurn(player2Name);
-            player2Score += player2TurnScore;
-            System.out.println(player2Name + " scores: " + player2TurnScore + " | Total: " + player2Score);
-            
+
+        if (verbose) {
+            System.out.println("=== Game Setup Complete ===");
+            System.out.println(currentPlayer.getName() + " goes first");
             System.out.println();
         }
-        
-        // Display final results
-        System.out.println("========================================");
-        System.out.println("           GAME OVER - FINAL RESULTS");
-        System.out.println("========================================");
-        System.out.println(player1Name + " - Total Score: " + player1Score);
-        System.out.println(player2Name + " - Total Score: " + player2Score);
-        System.out.println("========================================");
-        
-        if (player1Score > player2Score) {
-            System.out.println("\nCongratulations! " + player1Name + " WINS!");
-        } else if (player2Score > player1Score) {
-            System.out.println("\nCongratulations! " + player2Name + " WINS!");
-        } else {
-            System.out.println("\nIt's a TIE! Both players scored " + player1Score + " points!");
-        }
-        
-        scanner.close();
     }
-    
+
     /**
-     * Handles a single player's turn
-     * @param playerName the name of the player taking their turn
-     * @return the final score for this turn
+     * Sets up a player's starting deck: 7 Bitcoins and 3 Methods.
      */
-    private static int playTurn(String playerName) {
-        int currentValue = rollDie();
-        System.out.println("First roll: " + currentValue);
-        
-        int rerollsUsed = 0;
-        
-        // Allow up to 2 re-rolls
-        while (rerollsUsed < MAX_REROLLS) {
-            System.out.print("Reroll? (y/n): ");
-            String response = scanner.nextLine().trim().toLowerCase();
-            
-            if (response.equals("y") || response.equals("yes")) {
-                currentValue = rollDie();
-                System.out.println("You rolled: " + currentValue);
-                rerollsUsed++;
-            } else {
-                break;
+    private void setupPlayer(Player player) {
+        // Add 7 Bitcoins
+        for (int i = 0; i < 7; i++) {
+            Card bitcoin = supply.takeCard("Bitcoin");
+            if (bitcoin != null) {
+                player.addToDeck(bitcoin);
             }
         }
-        
-        System.out.println("Final roll: " + currentValue);
-        return currentValue;
+
+        // Add 3 Methods
+        for (int i = 0; i < 3; i++) {
+            Card method = supply.takeCard("Method");
+            if (method != null) {
+                player.addToDeck(method);
+            }
+        }
+
+        // Shuffle and draw initial hand
+        player.shuffleDeck();
+        player.drawCards(5);
     }
-    
+
     /**
-     * Rolls a 6-sided die
-     * @return a random number between 1 and 6
+     * Plays the entire game until completion.
      */
-    public static int rollDie() {
-        return random.nextInt(DIE_SIDES) + 1;
+    public void play() {
+        while (!isGameOver()) {
+            playTurn();
+        }
+
+        if (verbose) {
+            System.out.println("\n=== Game Over ===");
+            announceWinner();
+        }
+    }
+
+    /**
+     * Plays a single turn for the current player.
+     */
+    private void playTurn() {
+        turnCount++;
+
+        if (verbose) {
+            System.out.println("--- Turn " + turnCount + ": " + currentPlayer.getName() + " ---");
+        }
+
+        // Buy phase: play all cryptocurrency and buy a card
+        int coins = currentPlayer.playAllCryptocurrency();
+
+        if (verbose) {
+            System.out.println("Coins available: " + coins);
+        }
+
+        String boughtCard = currentPlayer.buyCard(supply, coins);
+
+        if (verbose) {
+            if (boughtCard != null) {
+                System.out.println("Bought: " + boughtCard);
+            } else {
+                System.out.println("No purchase made");
+            }
+        }
+
+        // Cleanup phase: discard and draw new hand
+        currentPlayer.cleanup();
+
+        // Switch players
+        Player temp = currentPlayer;
+        currentPlayer = otherPlayer;
+        otherPlayer = temp;
+
+        if (verbose) {
+            System.out.println();
+        }
+    }
+
+    /**
+     * Checks if the game is over (all Frameworks purchased).
+     */
+    private boolean isGameOver() {
+        return supply.areFrameworksEmpty();
+    }
+
+    /**
+     * Determines and announces the winner.
+     */
+    public Player getWinner() {
+        int p1Score = player1.calculateAutomationPoints();
+        int p2Score = player2.calculateAutomationPoints();
+
+        if (p1Score > p2Score) {
+            return player1;
+        } else if (p2Score > p1Score) {
+            return player2;
+        } else {
+            // Tie - no winner
+            return null;
+        }
+    }
+
+    private void announceWinner() {
+        int p1Score = player1.calculateAutomationPoints();
+        int p2Score = player2.calculateAutomationPoints();
+
+        System.out.println(player1.getName() + " Score: " + p1Score + " APs");
+        System.out.println(player2.getName() + " Score: " + p2Score + " APs");
+
+        Player winner = getWinner();
+        if (winner != null) {
+            System.out.println("Winner: " + winner.getName());
+        } else {
+            System.out.println("Game ended in a tie!");
+        }
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    public Supply getSupply() {
+        return supply;
+    }
+
+    public int getTurnCount() {
+        return turnCount;
+    }
+
+    /**
+     * Main method to run a game.
+     */
+    public static void main(String[] args) {
+         App game = new App(true);
+        game.setup();
+        game.play();
     }
 }
