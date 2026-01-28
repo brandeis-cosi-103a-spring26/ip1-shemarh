@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.brandeis.cosi103a.ip1.AppTest" time="0.03" tests="42" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="25"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/workspaces/ip1-shemarh/ip1/target/test-classes:/workspaces/ip1-shemarh/ip1/target/classes:/home/vscode/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/vscode/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="java.vm.vendor" value="Microsoft"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://www.microsoft.com"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="25"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="/usr/local/sdkman/candidates/java/25.0.1-ms/lib"/>
+    <property name="sun.java.command" value="/workspaces/ip1-shemarh/ip1/target/surefire/surefirebooter13502169342947215305.jar /workspaces/ip1-shemarh/ip1/target/surefire 2026-01-28T00-25-07_289-jvmRun1 surefire15501262037179962082tmp surefire_017178992205331546489tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/workspaces/ip1-shemarh/ip1/target/test-classes:/workspaces/ip1-shemarh/ip1/target/classes:/home/vscode/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/vscode/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/vscode"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-10-21"/>
+    <property name="java.home" value="/usr/local/sdkman/candidates/java/25.0.1-ms"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/workspaces/ip1-shemarh/ip1"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="surefire.real.class.path" value="/workspaces/ip1-shemarh/ip1/target/surefire/surefirebooter13502169342947215305.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="25.0.1+8-LTS"/>
+    <property name="user.name" value="vscode"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="6.12.54-linuxkit"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Microsoft-12574224"/>
+    <property name="localRepository" value="/home/vscode/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/microsoft/openjdk/issues"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="25.0.1"/>
+    <property name="user.dir" value="/workspaces/ip1-shemarh/ip1"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Microsoft"/>
+    <property name="java.vm.version" value="25.0.1+8-LTS"/>
+    <property name="stdin.encoding" value="UTF-8"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="69.0"/>
+  </properties>
+  <testcase name="testBuyingWithLimitedCoins" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0.003"/>
+  <testcase name="testPlayerAddToDeck" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testCryptoCurrencyCardToString" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testPlayerDrawCards" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testCryptoCurrencyCardCost" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testCryptoCurrencyCardName" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testBuyingReducesSupplyCount" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testSupplyGetCardCostInvalid" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testPlayerBuyCardWithInsufficientCoins" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testPlayerDrawCardsMoreThanDeck" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testSupplyIsAvailable" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testSupplyTakeCard" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testSupplyRemainingCount" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testAutomationCardIsAutomation" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testAutomationCardValue" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testSupplyAreFrameworksEmpty" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testPlayerShuffleDeck" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testPlayerPlayAllCryptocurrency" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testBuyCryptoCurrencyWhenAutomationNotAffordable" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0.001"/>
+  <testcase name="testBuyingSequentialDecreasesSupply" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testNoCardPurchaseWithZeroCoins" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testSupplyTakeCardExhausted" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testAutomationCardCost" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testAutomationCardName" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0.001"/>
+  <testcase name="testSupplyInitialization" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testBuyingEmptySupplyPile" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testMultiplePlayersWithSupply" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testPlayerAddToDiscard" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testPlayerRecycleDiscard" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0.001"/>
+  <testcase name="testSupplyCardCosts" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testCryptoCurrencyCardValue" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testBuyingAddsCardToDiscard" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testCardTypeDistinction" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testBuyingAutomationCardPriority" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testBuyingReturnValue" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testBuyingStrategyAutomationFirst" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testPlayerName" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testBuyingMultipleCards" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testAutomationCardToString" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testCryptoCurrencyCardIsNotAutomation" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0.001"/>
+  <testcase name="testSupplyTakeCardMultiple" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+  <testcase name="testPlayerGameFlow" classname="edu.brandeis.cosi103a.ip1.AppTest" time="0"/>
+</testsuite>
